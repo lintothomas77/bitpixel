@@ -2,105 +2,73 @@
 
 Corporate website for **BitPixel Solutions** — _Transforming Bits and Pixels into Digital Solutions._
 
-Built with **React 18** and **Vite 5**, styled using **styled-components**, and deployed on **Vercel**.
+A custom **WordPress theme** hand-built without any page builder — clean PHP templates, vanilla JS, and a full CSS design system.
 
 ---
 
 ## Tech Stack
 
-| Layer      | Technology                        |
-|------------|-----------------------------------|
-| Framework  | React 18                          |
-| Bundler    | Vite 5                            |
-| Styling    | styled-components v6              |
-| Deployment | Vercel                            |
-| Fonts      | Space Grotesk & Inter (Google Fonts) |
+| Layer       | Technology                          |
+|-------------|-------------------------------------|
+| CMS         | WordPress                           |
+| Templating  | PHP (custom theme, no page builder) |
+| Styling     | Vanilla CSS (custom design system)  |
+| JavaScript  | Vanilla JS (no framework)           |
+| Contact Form| Web3Forms API                       |
+| Fonts       | Space Grotesk & Inter (Google Fonts)|
 
 ---
 
-## Project Structure
+## Theme Structure
 
 ```
-bitpixel/
-├── public/               # Static assets served as-is
-├── images/               # Logo and image assets
-├── src/
-│   ├── components/       # Page sections
-│   │   ├── Navbar.jsx
-│   │   ├── Hero.jsx
-│   │   ├── About.jsx
-│   │   ├── Services.jsx
-│   │   ├── Stats.jsx
-│   │   ├── Team.jsx
-│   │   ├── Contact.jsx
-│   │   └── Footer.jsx
-│   ├── hooks/            # Custom React hooks
-│   ├── styles/           # Shared styles and theme
-│   ├── App.jsx           # Root component
-│   └── main.jsx          # Entry point
-├── index.html            # HTML shell
-├── vite.config.js        # Vite configuration
-├── vercel.json           # Vercel deployment config
-└── package.json
-```
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) v18 or higher
-- npm v9 or higher
-
-### Installation
-
-```bash
-npm install
-```
-
-### Environment Variables
-
-Create a `.env.local` file in the project root for local overrides. A `.env.production` file is used for production builds. These files are **not committed** to version control.
-
-### Development
-
-```bash
-npm run dev
-```
-
-Starts the Vite dev server at `http://localhost:5173`.
-
-### Production Build
-
-```bash
-npm run build
-```
-
-Output is written to the `dist/` directory.
-
-### Preview Production Build Locally
-
-```bash
-npm run preview
+bitpixel-theme/
+├── style.css                 # Theme declaration + full design system
+├── functions.php             # Enqueue scripts/styles, theme supports
+├── index.php                 # Fallback template
+├── front-page.php            # Home page (assembles all sections)
+├── header.php                # <head>, navbar
+├── footer.php                # Footer markup + wp_footer()
+├── 404.php                   # 404 page
+├── images/                   # Logo assets
+├── js/
+│   └── main.js               # All JS: particles, counters, form, tilt, etc.
+└── template-parts/
+    ├── hero.php
+    ├── stats.php
+    ├── services.php
+    ├── about.php
+    ├── team.php
+    └── contact.php
 ```
 
 ---
 
-## Deployment
+## Local Development
 
-The project is configured for **Vercel**. The `vercel.json` specifies:
+Uses **[Local by WP Engine](https://localwp.com/)** for local WordPress hosting.
 
-```json
-{
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "installCommand": "npm install"
-}
+1. Copy `bitpixel-theme/` into your WordPress install:
+   ```
+   wp-content/themes/bitpixel-theme/
+   ```
+
+2. Activate in **Appearance → Themes**
+
+3. Set front page: **Settings → Reading → A static page → Home**
+
+---
+
+## Contact Form Configuration
+
+Add these constants to `wp-config.php` (above `/* That's all, stop editing! */`):
+
+```php
+define( 'BITPIXEL_WEB3FORMS_KEY', 'YOUR_KEY_HERE' );
+define( 'BITPIXEL_CONTACT_EMAIL', 'contact@bitpixelsolutions.com' );
 ```
 
-Push to the connected Git branch to trigger an automatic Vercel deployment.
+The key is passed securely to `main.js` via `wp_localize_script`.
 
 ---
 
