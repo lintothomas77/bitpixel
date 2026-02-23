@@ -20,6 +20,7 @@ export const SectionTag = styled.span`
   border-radius: 100px;
   padding: 0.3em 1em;
   margin-bottom: 1rem;
+  width: fit-content;
 `;
 
 export const SectionTitle = styled.h2`
