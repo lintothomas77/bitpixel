@@ -132,66 +132,101 @@
         const canvas = document.getElementById('hero-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+
+        const cfg = {
+            count: 120,
+            maxSize: 2.5,
+            minSize: 0.5,
+            speed: 0.35,
+            lineLen: 140,
+            mouseRadius: 120,
+            colors: ['rgba(108,99,255,', 'rgba(0,212,255,', 'rgba(200,195,255,']
+        };
+
         let W, H, particles, animId;
+        const mouse = { x: -9999, y: -9999 };
+
+        // Track mouse globally (same as React version)
+        window.addEventListener('mousemove', function (e) {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        }, { passive: true });
 
         function resize() {
-            W = canvas.width = canvas.offsetWidth;
-            H = canvas.height = canvas.offsetHeight;
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
         }
 
         function Particle() {
-            this.reset();
-        }
-        Particle.prototype.reset = function () {
             this.x = Math.random() * W;
             this.y = Math.random() * H;
-            this.r = Math.random() * 1.5 + 0.3;
-            this.vx = (Math.random() - 0.5) * 0.4;
-            this.vy = (Math.random() - 0.5) * 0.4;
-            this.o = Math.random() * 0.5 + 0.1;
-        };
-        Particle.prototype.update = function () {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
-        };
-
-        function init() {
-            resize();
-            const count = Math.floor((W * H) / 8000);
-            particles = Array.from({ length: count }, function () { return new Particle(); });
+            this.vx = (Math.random() - 0.5) * cfg.speed;
+            this.vy = (Math.random() - 0.5) * cfg.speed;
+            this.r = cfg.minSize + Math.random() * (cfg.maxSize - cfg.minSize);
+            this.color = cfg.colors[Math.floor(Math.random() * cfg.colors.length)];
+            this.alpha = 0.4 + Math.random() * 0.5;
         }
 
         function draw() {
             ctx.clearRect(0, 0, W, H);
-            particles.forEach(function (p) {
-                p.update();
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                // Mouse repulsion (additive, same as React)
+                const dx = p.x - mouse.x;
+                const dy = p.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < cfg.mouseRadius) {
+                    const force = (cfg.mouseRadius - dist) / cfg.mouseRadius;
+                    p.vx += (dx / dist) * force * 0.5;
+                    p.vy += (dy / dist) * force * 0.5;
+                }
+
+                // Friction + speed cap
+                p.vx *= 0.995;
+                p.vy *= 0.995;
+                if (Math.sqrt(p.vx * p.vx + p.vy * p.vy) > cfg.speed * 3) {
+                    p.vx *= 0.9;
+                    p.vy *= 0.9;
+                }
+
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Wrap around edges (not reset)
+                if (p.x < 0) p.x = W;
+                if (p.x > W) p.x = 0;
+                if (p.y < 0) p.y = H;
+                if (p.y > H) p.y = 0;
+
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(108,99,255,' + p.o + ')';
+                ctx.fillStyle = p.color + p.alpha + ')';
                 ctx.fill();
-            });
 
-            // Draw connection lines
-            for (let i = 0; i < particles.length; i++) {
+                // Connection lines to subsequent particles
                 for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 100) {
+                    const q = particles[j];
+                    const lx = p.x - q.x;
+                    const ly = p.y - q.y;
+                    const d = Math.sqrt(lx * lx + ly * ly);
+                    if (d < cfg.lineLen) {
                         ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = 'rgba(108,99,255,' + (0.08 * (1 - dist / 100)) + ')';
-                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(q.x, q.y);
+                        ctx.strokeStyle = 'rgba(108,99,255,' + ((1 - d / cfg.lineLen) * 0.25) + ')';
+                        ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
                 }
             }
+
             animId = requestAnimationFrame(draw);
         }
 
-        init();
+        resize();
+        particles = Array.from({ length: cfg.count }, function () { return new Particle(); });
         draw();
 
         let resizeTimer;
@@ -199,10 +234,11 @@
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(function () {
                 cancelAnimationFrame(animId);
-                init();
+                resize();
+                particles = Array.from({ length: cfg.count }, function () { return new Particle(); });
                 draw();
             }, 200);
-        });
+        }, { passive: true });
     })();
 
     /* ── 7. Service Card Tilt Effect ──────────────────────────── */

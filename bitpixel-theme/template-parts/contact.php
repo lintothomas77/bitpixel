@@ -11,10 +11,11 @@
             <div>
                 <span class="section-tag reveal">Get In Touch</span>
                 <h2 class="section-title reveal reveal-delay-1">
-                    Let's Build<br><span class="gradient-text">Something Great</span>
+                    <?php echo bpx('contact_title', "Let's Build"); ?><br>
+                    <span class="gradient-text"><?php echo bpx('contact_title_g', 'Something Great'); ?></span>
                 </h2>
                 <p class="contact-lead reveal reveal-delay-2">
-                    Ready to transform your digital presence? Reach out and let's talk about your project.
+                    <?php echo bpx('contact_lead', "Ready to transform your digital presence? Reach out and let's talk about your project."); ?>
                 </p>
 
                 <div class="contact-details reveal reveal-delay-3">
@@ -28,9 +29,8 @@
                         </div>
                         <div>
                             <span class="contact-item-label">Email Us</span>
-                            <a href="mailto:contact@bitpixelsolutions.com" class="contact-item-value">
-                                contact@bitpixelsolutions.com
-                            </a>
+                            <?php $email = bpx('contact_email', 'contact@bitpixelsolutions.com'); ?>
+                            <a href="mailto:<?php echo esc_attr($email); ?>" class="contact-item-value"><?php echo $email; ?></a>
                         </div>
                     </div>
 
@@ -42,7 +42,8 @@
                         </div>
                         <div>
                             <span class="contact-item-label">Call Us</span>
-                            <a href="tel:+919745875010" class="contact-item-value">+91 97458 75010</a>
+                            <?php $phone = bpx('contact_phone', '+91 97458 75010'); ?>
+                            <a href="tel:<?php echo esc_attr(preg_replace('/\s+/', '', $phone)); ?>" class="contact-item-value"><?php echo $phone; ?></a>
                         </div>
                     </div>
 
@@ -55,12 +56,7 @@
                         </div>
                         <div>
                             <span class="contact-item-label">Visit Us</span>
-                            <address class="contact-item-value">
-                                3rd Floor, Site No. 74, Mass Complex,<br>
-                                15th Cross Road, Sarakki Industrial Area,<br>
-                                3rd Phase, J. P. Nagar,<br>
-                                Bengaluru, Karnataka 560078
-                            </address>
+                            <address class="contact-item-value"><?php echo bpx_html('contact_address', '3rd Floor, Site No. 74, Mass Complex,<br>15th Cross Road, Sarakki Industrial Area,<br>3rd Phase, J. P. Nagar,<br>Bengaluru, Karnataka 560078'); ?></address>
                         </div>
                     </div>
 

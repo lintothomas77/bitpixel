@@ -9,8 +9,8 @@
                          alt="<?php bloginfo('name'); ?>"
                          class="footer-logo">
                 </a>
-                <p class="footer-tagline">BITPIXEL SOLUTIONS PRIVATE LIMITED</p>
-                <p class="footer-desc">Transforming bits and pixels into intelligent digital products since 2019.</p>
+                <p class="footer-tagline"><?php echo bpx('footer_tagline', 'BITPIXEL SOLUTIONS PRIVATE LIMITED'); ?></p>
+                <p class="footer-desc"><?php echo bpx('footer_desc', 'Transforming bits and pixels into intelligent digital products since 2019.'); ?></p>
             </div>
 
             <!-- Services col -->

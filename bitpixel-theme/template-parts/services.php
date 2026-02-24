@@ -6,9 +6,9 @@
 
     <div class="container">
         <div class="section-header reveal">
-            <span class="section-tag">What We Do</span>
-            <h2 class="section-title">Business Growth <span class="gradient-text">Advisory</span></h2>
-            <p class="section-subtitle">Technology is the tool. People are the difference.</p>
+            <span class="section-tag"><?php echo bpx('svc_tag', 'What We Do'); ?></span>
+            <h2 class="section-title"><?php echo bpx('svc_title', 'Business Growth'); ?> <span class="gradient-text"><?php echo bpx('svc_title_g', 'Advisory'); ?></span></h2>
+            <p class="section-subtitle"><?php echo bpx('svc_subtitle', 'Technology is the tool. People are the difference.'); ?></p>
         </div>
 
         <div class="services-grid">
@@ -28,14 +28,14 @@
                         </svg>
                     </div>
                 </div>
-                <h3 class="card-title">Branding &amp; UI/UX</h3>
-                <p class="card-desc">Build experiences that connect and convert. From digital identity design to intuitive user journeys, we ensure your brand speaks clearly across every platform.</p>
+                <h3 class="card-title"><?php echo bpx('svc1_title', 'Branding &amp; UI/UX'); ?></h3>
+                <p class="card-desc"><?php echo bpx('svc1_desc', 'Build experiences that connect and convert. From digital identity design to intuitive user journeys, we ensure your brand speaks clearly across every platform.'); ?></p>
                 <ul class="card-features">
-                    <li>Brand Identity &amp; Strategy</li>
-                    <li>UI/UX Design Systems</li>
-                    <li>Prototyping &amp; User Research</li>
+                    <li><?php echo bpx('svc1_feat1', 'Brand Identity &amp; Strategy'); ?></li>
+                    <li><?php echo bpx('svc1_feat2', 'UI/UX Design Systems'); ?></li>
+                    <li><?php echo bpx('svc1_feat3', 'Prototyping &amp; User Research'); ?></li>
                 </ul>
-                <a href="#contact" class="card-cta">Start a Project <span aria-hidden="true">→</span></a>
+                <a href="#contact" class="card-cta"><?php echo bpx('svc1_cta', 'Start a Project'); ?> <span aria-hidden="true">→</span></a>
             </div>
 
             <!-- Web Development (featured) -->
@@ -55,14 +55,14 @@
                         </svg>
                     </div>
                 </div>
-                <h3 class="card-title">Web Development</h3>
-                <p class="card-desc">Smart, scalable, and secure web solutions built for your business. Our expert developers craft high-performing websites and web apps that deliver seamless results.</p>
+                <h3 class="card-title"><?php echo bpx('svc2_title', 'Web Development'); ?></h3>
+                <p class="card-desc"><?php echo bpx('svc2_desc', 'Smart, scalable, and secure web solutions built for your business. Our expert developers craft high-performing websites and web apps that deliver seamless results.'); ?></p>
                 <ul class="card-features">
-                    <li>Custom Web Applications</li>
-                    <li>E-commerce Platforms</li>
-                    <li>Performance Optimisation</li>
+                    <li><?php echo bpx('svc2_feat1', 'Custom Web Applications'); ?></li>
+                    <li><?php echo bpx('svc2_feat2', 'E-commerce Platforms'); ?></li>
+                    <li><?php echo bpx('svc2_feat3', 'Performance Optimisation'); ?></li>
                 </ul>
-                <a href="#contact" class="card-cta">Start a Project <span aria-hidden="true">→</span></a>
+                <a href="#contact" class="card-cta"><?php echo bpx('svc2_cta', 'Start a Project'); ?> <span aria-hidden="true">→</span></a>
             </div>
 
             <!-- Mobile Development -->
@@ -82,14 +82,14 @@
                         </svg>
                     </div>
                 </div>
-                <h3 class="card-title">Mobile Development</h3>
-                <p class="card-desc">Stay connected with your audience anywhere, anytime. Cross-platform apps combining sleek design, strong performance, and exceptional user experience.</p>
+                <h3 class="card-title"><?php echo bpx('svc3_title', 'Mobile Development'); ?></h3>
+                <p class="card-desc"><?php echo bpx('svc3_desc', 'Stay connected with your audience anywhere, anytime. Cross-platform apps combining sleek design, strong performance, and exceptional user experience.'); ?></p>
                 <ul class="card-features">
-                    <li>iOS &amp; Android Apps</li>
-                    <li>Cross-Platform (React Native)</li>
-                    <li>App Store Optimisation</li>
+                    <li><?php echo bpx('svc3_feat1', 'iOS &amp; Android Apps'); ?></li>
+                    <li><?php echo bpx('svc3_feat2', 'Cross-Platform (React Native)'); ?></li>
+                    <li><?php echo bpx('svc3_feat3', 'App Store Optimisation'); ?></li>
                 </ul>
-                <a href="#contact" class="card-cta">Start a Project <span aria-hidden="true">→</span></a>
+                <a href="#contact" class="card-cta"><?php echo bpx('svc3_cta', 'Start a Project'); ?> <span aria-hidden="true">→</span></a>
             </div>
 
         </div><!-- /.services-grid -->
