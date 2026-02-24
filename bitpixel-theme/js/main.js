@@ -26,6 +26,7 @@
             const open = list.classList.toggle('open');
             ham.classList.toggle('open', open);
             ham.setAttribute('aria-expanded', String(open));
+            document.body.classList.toggle('menu-open', open);
             document.body.style.overflow = open ? 'hidden' : '';
         });
 
@@ -35,6 +36,7 @@
                 list.classList.remove('open');
                 ham.classList.remove('open');
                 ham.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             }
         });
