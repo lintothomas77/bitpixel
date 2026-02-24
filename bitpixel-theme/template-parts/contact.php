@@ -9,7 +9,7 @@
 
             <!-- Contact Info -->
             <div>
-                <span class="section-tag reveal">Get In Touch</span>
+                <span class="section-tag reveal"><?php echo bpx('contact_tag', 'Get In Touch'); ?></span>
                 <h2 class="section-title reveal reveal-delay-1">
                     <?php echo bpx('contact_title', "Let's Build"); ?><br>
                     <span class="gradient-text"><?php echo bpx('contact_title_g', 'Something Great'); ?></span>

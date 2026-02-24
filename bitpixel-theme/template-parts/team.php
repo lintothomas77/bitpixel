@@ -3,7 +3,7 @@
     <div class="container">
 
         <div class="section-header reveal">
-            <span class="section-tag">The People</span>
+            <span class="section-tag"><?php echo bpx('team_tag', 'The People'); ?></span>
             <h2 class="section-title"><?php echo bpx('team_title', 'Experts Driving'); ?> <span class="gradient-text"><?php echo bpx('team_title_g', 'Your Success'); ?></span></h2>
             <p class="section-subtitle"><?php echo bpx('team_subtitle', 'Meet the minds behind the magic.'); ?></p>
         </div>

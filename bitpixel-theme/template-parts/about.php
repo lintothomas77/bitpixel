@@ -26,7 +26,7 @@
 
             <!-- Text content -->
             <div class="about-content">
-                <span class="section-tag reveal">About Us</span>
+                <span class="section-tag reveal"><?php echo bpx('about_tag', 'About Us'); ?></span>
                 <h2 class="section-title reveal reveal-delay-1">
                     <?php echo bpx('about_title', 'Where'); ?>
                     <span class="gradient-text"> <?php echo bpx('about_title_g', 'Passion'); ?></span><br>
